@@ -12,6 +12,8 @@ GAME DIMENSIONS 6 rows, 7 columns
 
 
 """
+from graphics.py import *
+
 
 class game_c4:
     #rack = [][]
