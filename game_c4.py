@@ -12,7 +12,7 @@ GAME DIMENSIONS 6 rows, 7 columns
 
 
 """
-from graphics.py import *
+from graphics import *
 
 
 class game_c4:
@@ -22,17 +22,19 @@ class game_c4:
         self.rows = rows
         self.columns = columns
         self.rack = [['O']*self.rows for i in range(self.columns)]
-        
+        #self.rack[column][row]
         
         self.play_game()
         
     
     def valid_move(self, col):
+        #check if the chosen column is full
         if(self.rack[col-1][-1]=='O'):
             return True
         return False
         
     def add_piece(self, col, turn):
+        #add piece of correct color to column
         if turn%2:
             for i in range(self.rows):
                 if(self.rack[col-1][i] == 'O'):
@@ -45,14 +47,17 @@ class game_c4:
                     break
             
     def check_win(self, rack, symbol):
+        #check for horizontal c4
         for y in range(len(self.rack[0])):
             for x in range(len(self.rack) - 3):
                 if rack[x][y] == symbol and rack[x+1][y] == symbol and rack[x+2][y] == symbol and rack[x+3][y] == symbol:
                     return True       
+        #check for vertical c4
         for y in range(len(self.rack[0])-3):
             for x in range(len(self.rack)):
                 if rack[x][y] == symbol and rack[x][y+1] == symbol and rack[x][y+2] == symbol and rack[x][y+3] == symbol:
                     return True
+        #check for diagonal c4
         for y in range(len(self.rack[0])-3):
             for x in range(len(self.rack)-3):
                 if rack[x][y] == symbol and rack[x+1][y+1] == symbol and rack[x+2][y+2] == symbol and rack[x+3][y+3] == symbol:
@@ -73,7 +78,7 @@ class game_c4:
         print()
         print()
     
-        ng = input("If you would like to start a new game press y")
+        ng = input("If you would like to start a new game press y: ")
         if(ng == "y"):
             flag = 0
             while flag == 0:
@@ -102,8 +107,8 @@ class game_c4:
                 flag = 0
                 while(flag == 0):
                     try:
-                        col = int(input("Move "+str(turn)+" Please choose a valid column: "))
-                        if(0 <= col <= self.columns):
+                        col = int(input("Move "+str(turn)+": Please choose a valid column from 1 to 7: "))
+                        if(0 < col <= self.columns):
                             flag = 1
                     except ValueError:
                         flag = 0
