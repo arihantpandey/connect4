@@ -12,7 +12,7 @@ GAME DIMENSIONS 6 rows, 7 columns
 
 
 """
-from graphics import *
+#from graphics import *
 
 
 class game_c4:
