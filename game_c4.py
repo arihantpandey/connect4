@@ -107,7 +107,7 @@ class game_c4:
                 flag = 0
                 while(flag == 0):
                     try:
-                        col = int(input("Move "+str(turn)+": Please choose a valid column from 1 to 7: "))
+                        col = int(input(f"Move {turn}: Please choose a valid column from 1 to {self.columns}: "))
                         if(0 < col <= self.columns):
                             flag = 1
                     except ValueError:
